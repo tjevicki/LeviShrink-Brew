@@ -41,18 +41,23 @@ public class TeleportController : MonoBehaviour
     {
         Debug.Log("Teleport mode canceled.");
 
-        if (!TeleportationRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit))
+        TeleportationRayInteractor.TryGetHitInfo(out Vector3 position, out Vector3 normal, out int positionInLine, out bool isValid);
+        if (isValid)
         {
-            TeleportationRayInteractor.enabled = false;
-            return;
+            Debug.Log("Teleport target is valid. Teleporting...");
+
+            TeleportRequest TeleportRequest = new TeleportRequest()
+            {
+                destinationPosition = position,
+            };
+
+            TeleportationProvider.QueueTeleportRequest(TeleportRequest);
+        }
+        else
+        {
+            Debug.Log("Teleport target is not valid.");
         }
 
-        TeleportRequest TeleportRequest = new TeleportRequest()
-        {
-            destinationPosition = raycastHit.point,
-        };
-
-        TeleportationProvider.QueueTeleportRequest(TeleportRequest);
         TeleportationRayInteractor.enabled = false;
     }
 }
