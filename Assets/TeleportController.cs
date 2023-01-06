@@ -33,29 +33,20 @@ public class TeleportController : MonoBehaviour
 
     private void OnTeleportActivated(InputAction.CallbackContext context)
     {
-        Debug.Log("Teleport mode activated.");
         TeleportationRayInteractor.enabled = true;
     }
 
     private void OnTeleportCanceled(InputAction.CallbackContext context)
     {
-        Debug.Log("Teleport mode canceled.");
-
         TeleportationRayInteractor.TryGetHitInfo(out Vector3 position, out Vector3 normal, out int positionInLine, out bool isValid);
         if (isValid)
         {
-            Debug.Log("Teleport target is valid. Teleporting...");
-
             TeleportRequest TeleportRequest = new TeleportRequest()
             {
                 destinationPosition = position,
             };
 
             TeleportationProvider.QueueTeleportRequest(TeleportRequest);
-        }
-        else
-        {
-            Debug.Log("Teleport target is not valid.");
         }
 
         TeleportationRayInteractor.enabled = false;

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class DrinkingController : MonoBehaviour
 {
-    public Mesh FilledGlassMesh;
-    public Material[] FilledGlassMaterials;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +16,14 @@ public class DrinkingController : MonoBehaviour
         
     }
 
-    public void FillWithPotion()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Filling a glass with potion.");
+        Debug.Log("Drank a potion.");
 
-        // Replace mesh with filled beaker
-        MeshFilter MeshFilter = GetComponent<MeshFilter>();
-        MeshFilter.mesh = FilledGlassMesh;
-
-        MeshRenderer MeshRenderer = GetComponent<MeshRenderer>();
-        MeshRenderer.materials = FilledGlassMaterials;
-
+        GlassController collidingDrinkingController = other.gameObject.GetComponent<GlassController>();
+        if (collidingDrinkingController != null)
+        {
+            collidingDrinkingController.Empty(/*makePotionFromIngredients(addedIngredients)*/);
+        }
     }
 }

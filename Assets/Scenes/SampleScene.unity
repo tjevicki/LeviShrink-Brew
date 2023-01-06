@@ -611,6 +611,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: DrinkingGlass
       objectReference: {fileID: 0}
+    - target: {fileID: 4077014547822885139, guid: ef98fe777f1df974b803ab0812d66da1,
+        type: 3}
+      propertyPath: EmptyGlassMesh
+      value: 
+      objectReference: {fileID: 4300000, guid: affe7203ad95ac04884cd98a039abd27, type: 3}
+    - target: {fileID: 4077014547822885139, guid: ef98fe777f1df974b803ab0812d66da1,
+        type: 3}
+      propertyPath: EmptyGlassMaterials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077014547822885139, guid: ef98fe777f1df974b803ab0812d66da1,
+        type: 3}
+      propertyPath: EmptyGlassMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 98d71c75f13684d4ab284a351b77b3d3, type: 2}
     - target: {fileID: 5494676113954246419, guid: ef98fe777f1df974b803ab0812d66da1,
         type: 3}
       propertyPath: m_RootOrder
@@ -3103,6 +3118,8 @@ GameObject:
   - component: {fileID: 511021650}
   - component: {fileID: 511021649}
   - component: {fileID: 511021648}
+  - component: {fileID: 511021652}
+  - component: {fileID: 511021651}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3265,6 +3282,31 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &511021651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511021646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1d5fc697166f14a9220e0cfc12a6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &511021652
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511021646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!4 &540094337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7860418949837613898, guid: 850723da39815114481bd87347f03f03,
