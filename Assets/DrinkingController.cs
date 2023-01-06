@@ -18,12 +18,17 @@ public class DrinkingController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Drank a potion.");
-
         GlassController collidingDrinkingController = other.gameObject.GetComponent<GlassController>();
         if (collidingDrinkingController != null)
         {
-            collidingDrinkingController.Empty(/*makePotionFromIngredients(addedIngredients)*/);
+            Potion drunkPotion = collidingDrinkingController.potion;
+
+            collidingDrinkingController.Empty();
+
+            if (drunkPotion != null)
+            {
+                Debug.Log("Drank a " + drunkPotion.PotionName() + ".");
+            }
         }
     }
 }

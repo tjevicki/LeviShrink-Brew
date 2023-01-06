@@ -27,7 +27,7 @@ public class IngredientCollisionHandler : MonoBehaviour
         GlassController collidingDrinkingController = collision.gameObject.GetComponent<GlassController>();
         if (collidingDrinkingController != null)
         {
-            collidingDrinkingController.FillWithPotion(/*makePotionFromIngredients(addedIngredients)*/);
+            collidingDrinkingController.FillWithPotion(new Potion(addedIngredients));
         }
     }
 

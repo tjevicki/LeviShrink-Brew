@@ -10,6 +10,8 @@ public class GlassController : MonoBehaviour
     public Mesh FilledGlassMesh;
     public Material[] FilledGlassMaterials;
 
+    public Potion potion { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +24,11 @@ public class GlassController : MonoBehaviour
         
     }
 
-    public void FillWithPotion()
+    public void FillWithPotion(Potion potion)
     {
         Debug.Log("Filling a glass with potion.");
+
+        this.potion = potion;
 
         MeshFilter MeshFilter = GetComponent<MeshFilter>();
         MeshFilter.mesh = FilledGlassMesh;
@@ -36,6 +40,8 @@ public class GlassController : MonoBehaviour
 
     public void Empty()
     {
+        this.potion = null;
+
         MeshFilter MeshFilter = GetComponent<MeshFilter>();
         MeshFilter.mesh = EmptyGlassMesh;
 
