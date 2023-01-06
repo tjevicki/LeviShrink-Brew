@@ -16,13 +16,18 @@ public class IngredientCollisionHandler : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         PotionIngredient collidingIngredient = collision.gameObject.GetComponent<PotionIngredient>();
-
         if (collidingIngredient != null)
         {
             Debug.Log("Added a " + collidingIngredient.ingredientId + " into the cauldron.");
             addedIngredients.Add(collidingIngredient.ingredientId);
 
             Destroy(collision.gameObject);
+        }
+
+        DrinkingController collidingDrinkingController = collision.gameObject.GetComponent<DrinkingController>();
+        if (collidingDrinkingController != null)
+        {
+            collidingDrinkingController.FillWithPotion(/*makePotionFromIngredients(addedIngredients)*/);
         }
     }
 
