@@ -9,6 +9,7 @@ public class DrinkingController : MonoBehaviour
     public GameObject EndGameUI;
     public GameObject EndGameUITitle;
     public GameObject EndGameUIDescription;
+    public AudioSource DrinkingSoundSource;
 
     private bool isFogActive = false;
 
@@ -43,6 +44,8 @@ public class DrinkingController : MonoBehaviour
             if (drunkPotion != null)
             {
                 Debug.Log("Drank a " + drunkPotion.PotionInfo().PotionTitle + ".");
+
+                DrinkingSoundSource.Play();
 
                 SetEndGameUIText(drunkPotion.PotionInfo());
 

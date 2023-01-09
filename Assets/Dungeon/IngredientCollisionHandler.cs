@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class IngredientCollisionHandler : MonoBehaviour
 {
+    public AudioSource SplashSoundSource;
+
     private List<string> addedIngredients = new List<string>();
 
     // Possible ingredients:
@@ -19,6 +21,9 @@ public class IngredientCollisionHandler : MonoBehaviour
         if (collidingIngredient != null)
         {
             Debug.Log("Added a " + collidingIngredient.ingredientId + " into the cauldron.");
+
+            SplashSoundSource.Play();
+
             addedIngredients.Add(collidingIngredient.ingredientId);
 
             Destroy(collision.gameObject);
@@ -27,6 +32,7 @@ public class IngredientCollisionHandler : MonoBehaviour
         GlassController collidingDrinkingController = collision.gameObject.GetComponent<GlassController>();
         if (collidingDrinkingController != null)
         {
+            SplashSoundSource.Play();
             collidingDrinkingController.FillWithPotion(new Potion(addedIngredients));
         }
     }
