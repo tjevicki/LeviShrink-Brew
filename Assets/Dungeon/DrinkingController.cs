@@ -10,6 +10,8 @@ public class DrinkingController : MonoBehaviour
     public GameObject EndGameUITitle;
     public GameObject EndGameUIDescription;
 
+    private bool isFogActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,14 @@ public class DrinkingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isFogActive)
+        {
+            // Increase fog density each frame
+            if (RenderSettings.fogDensity < 1f)
+            {
+                RenderSettings.fogDensity += 0.00083f;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -38,6 +47,12 @@ public class DrinkingController : MonoBehaviour
                 SetEndGameUIText(drunkPotion.PotionInfo());
 
                 Invoke("ShowEndGameUI", 2.0f);
+
+                if (drunkPotion.PotionInfo().IsDeadly)
+                {
+                    Invoke("StartFogEffect", 2.0f);
+                }
+
                 Invoke("LoadMainMenu", 12.0f);
             }
         }
@@ -52,6 +67,11 @@ public class DrinkingController : MonoBehaviour
     private void ShowEndGameUI()
     {
         EndGameUI.GetComponent<EndGameUIController>().ShowEndGameUI();
+    }
+
+    private void StartFogEffect()
+    {
+        isFogActive = true;
     }
 
     private void LoadMainMenu()
