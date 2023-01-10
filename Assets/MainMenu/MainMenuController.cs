@@ -5,9 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+
+    public GameObject MainScreen;
+    public GameObject TutorialScreen;
+
+    void Start()
+    {
+        MainScreen.SetActive(true);
+        TutorialScreen.SetActive(false);
+    }
+
     public void OnNewGameClick()
     {
         Debug.Log("New game clicked. Loading a dungeon scene isntance.");
         SceneManager.LoadScene("DungeonScene");
+    }
+
+    public void OnTutorialClick()
+    {
+        MainScreen.SetActive(false);
+        TutorialScreen.SetActive(true);
+    }
+
+    public void OnBackClick()
+    {
+        MainScreen.SetActive(true);
+        TutorialScreen.SetActive(false);
     }
 }
